@@ -50,6 +50,7 @@ class World:
         self._rng = random.Random()
         self.difficulty_ratio = 0.0
         self.parallax_x = 0.0
+        self.coeff_parallax_x = 0.3
         self.has_bg_image = False
         self.bg_path = bg_path or os.path.join("assets", "Images", "BackGround.png")
 
@@ -149,7 +150,7 @@ class World:
 
     def _update_ambient(self, speed):
         """Met a jour les elements d'ambiance selon la vitesse de jeu."""
-        self.parallax_x = (self.parallax_x + (speed * 0.5)) % self.screen_width
+        self.parallax_x = (self.parallax_x + (speed * 0.5)) % (self.screen_width / self.coeff_parallax_x)
 
         for particle in self._particles:
             particle["x"] -= speed * (0.22 + particle["speed"] * 0.22)
@@ -439,7 +440,7 @@ class World:
     def drawBackGround(self, screen):
         """Dessine le fond avec un leger effet de parallaxe."""
         if self.has_bg_image:
-            offset = int(self.parallax_x * 0.3) % self.screen_width
+            offset = int(self.parallax_x * self.coeff_parallax_x) % self.screen_width
             screen.blit(self.bg_image, (-offset, 0))
             screen.blit(self.bg_image, (self.screen_width - offset, 0))
         else:
