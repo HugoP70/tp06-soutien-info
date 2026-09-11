@@ -34,7 +34,7 @@ class Player:
         self.color = color
         # Chargement securise des images d'animation.
         # Si un asset manque, une surface de secours est creee.
-        anim_dir = os.path.join('assets', 'Images', 'mov_animation', 'mov_white_animation')
+        anim_dir = os.path.join('assets', 'Images', 'mov_animation')
 
         def safe_load(name):
             path = os.path.join(anim_dir, name) 
@@ -57,10 +57,10 @@ class Player:
                 return surf
 
         # Prefere les fichiers d'animation disponibles ; repli sur des surfaces unies.
-        self.walk_normal = [safe_load('mov1_1.img.png.png'), safe_load('mov2_1.img.png.png'), safe_load('mov1_1.img.png.png')]
-        self.walk_inverted = [safe_load('mov1_-1.img.png.png'), safe_load('mov2_-1.img.png.png'), safe_load('mov1_-1.img.png.png')]
-        self.flip_imgs = [safe_load('flip1.img.png.png'), safe_load('flip2.img.png.png')]
-        self.dead_image = safe_load('dead.img.png')
+        self.walk_normal = [safe_load('mov1_1.png'), safe_load('mov2_1.png'), safe_load('mov1_1.png')]
+        self.walk_inverted = [safe_load('mov1_-1.png'), safe_load('mov2_-1.png'), safe_load('mov1_-1.png')]
+        self.flip_imgs = [safe_load('flip1.png'), safe_load('flip2.png')]
+        self.dead_image = safe_load('dead.png')
 
         #colorer
         self.colorAssets(self.color)
