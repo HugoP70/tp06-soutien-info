@@ -132,6 +132,7 @@ class Lobby:
 
         skin_label = self.font_medium.render("Skin", True, (255, 255, 255))
         skin_pos = (panel_rect.left + 560, panel_rect.top + 185)
+        screen.blit(skin_label, skin_pos)
 
         btn_skin_rect = pygame.Rect(panel_rect.right - 160, panel_rect.top + 180, 130, 40)
         is_hover_skin = btn_skin_rect.collidepoint(mx, my)
